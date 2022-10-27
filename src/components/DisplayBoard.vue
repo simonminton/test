@@ -105,6 +105,7 @@ export default {
       trainData: null,
       lines: null,
       stationName: null,
+      trainTime: null
     };
   },
   mounted() {
@@ -112,6 +113,17 @@ export default {
     this.getTrainData();
     this.getStationLines();
   },
+  watch:{
+    $route: {
+     handler: function(value) {
+        this.trainTime = 0;
+        this.trainData = null;
+        this.getTrainData();
+    },
+      deep: true,
+      immediate: true,
+  }
+},
   methods: {
     getStationLines() {
       // str to uppr
@@ -162,9 +174,11 @@ export default {
           "&destinationStationId=940GZZLU" +
           this.$route.params.destination;
       }
+      var now = new Date().getTime();
+      // if time was more than 5 seconds ago, fetch new data
+      if (this.trainData == null || now - this.trainTime > 5000) {
+        this.trainTime = new Date().getTime();
       // Fetch train data from the API
-
-      console.log("updating");
       const res = fetch(apiUrl)
         .then((response) => {
           return response.json();
@@ -178,8 +192,10 @@ export default {
             " Underground Station",
             ""
           );
-          setTimeout(this.getTrainData, 5000);
+          
         });
+      }
+      setTimeout(this.getTrainData, 1000);
     },
   },
 };
