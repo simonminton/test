@@ -32,18 +32,19 @@
       >
         Lines
       </div>
+      <div class="flex flex-row flex-wrap">
       <div
         v-for="(line, lindx) in lines"
         v-bind:key="lindx"
-        class="text-white inline pr-2 pb-2 mt-4 text-sm font-semibold uppercase"
+        class="text-white w-full pr-2 pb-2 mt-4 text-sm font-semibold uppercase"
       >
         <a
-          :class="'bg-' + line.lineName"
           class="px-2 py-1"
           :href="'/' + $route.params.station + '/' + line.lineName"
-        >
+          :class="$route.params.line == line.lineName ? 'border-white box-border border-2 bg-' + line.lineName : 'border-' + line.lineName + ' box-border border-2 bg-' + line.lineName">
           {{ line.lineName }}
         </a>
+      </div>
       </div>
       <div
         v-if="$route.params.line"
