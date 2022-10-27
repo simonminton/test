@@ -178,7 +178,7 @@ export default {
             " Underground Station",
             ""
           );
-          setTimeout(this.getTrainData, 15000);
+          setTimeout(this.getTrainData, 5000);
         });
     },
   },
