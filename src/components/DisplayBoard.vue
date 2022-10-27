@@ -1,21 +1,21 @@
 <template>
   <div class="w-full flex flex-row flex-wrap-reverse md:flex-wrap">
     <div class="w-full md:w-1/4 bg-gray-800 text-white p-4">
-      <a href="/"> Home </a>
-      <a class="py-1" :href="'/' + $route.params.station">
+      <router to="/"> Home </router>
+      <router class="py-1" :to="'/' + $route.params.station">
         &rarr; {{ this.stationName }}
-      </a>
-      <a
+      </router>
+      <router
         v-if="$route.params.line"
         class="py-1 uppercase"
-        :href="'/' + $route.params.station + '/' + $route.params.line"
+        :to="'/' + $route.params.station + '/' + $route.params.line"
       >
         &rarr; {{ $route.params.line }}
-      </a>
-      <a
+      </router>
+      <router
         v-if="$route.params.direction"
         class="py-1"
-        :href="
+        :to="
           '/' +
           $route.params.station +
           '/' +
@@ -25,7 +25,7 @@
         "
       >
         &rarr; {{ $route.params.direction }}
-      </a>
+      </router>
       <div
         v-if="lines"
         class="text-white font-semibold border-b border-gray-600 my-2 pb-2 mt-4"
@@ -38,12 +38,12 @@
         v-bind:key="lindx"
         class="text-white w-full pr-2 pb-2 mt-4 text-sm font-semibold uppercase"
       >
-        <a
+        <router
           class="px-2 py-1"
-          :href="'/' + $route.params.station + '/' + line.lineName"
+          :to="'/' + $route.params.station + '/' + line.lineName"
           :class="$route.params.line == line.lineName ? 'border-white box-border border-2 bg-' + line.lineName : 'border-' + line.lineName + ' box-border border-2 bg-' + line.lineName">
           {{ line.lineName }}
-        </a>
+      </router>
       </div>
       </div>
       <div
@@ -53,22 +53,22 @@
         Options
       </div>
       <div v-if="$route.params.line" class="text-white pb-2 mt-4 flex flex-row">
-        <a
+        <router
           class="w-1/2 block text-center"
-          :href="
+          :to="
             '/' + $route.params.station + '/' + $route.params.line + '/inbound'
           "
         >
           Inbound
-        </a>
-        <a
+      </router>
+        <router
           class="w-1/2 block text-center"
-          :href="
+          :to="
             '/' + $route.params.station + '/' + $route.params.line + '/outbound'
           "
         >
           Outbound
-        </a>
+    </router>
       </div>
     </div>
     <ul

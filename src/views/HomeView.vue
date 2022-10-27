@@ -91,14 +91,14 @@ export default {
           v-for="(station, indx) in stations"
           v-bind:key="indx"
         >
-          <a :href="'/' + station.shortId">
+          <router :to="'/' + station.shortId">
             <div class="py-1">
               
               <div class="text-lg text-white font-bold">
                 {{ station.goodName }}
               </div>
             </div>
-          </a>
+          </router>
         </li>
       </ul>
       <ul v-if="filteredStations.length" class="flex w-full flex-row flex-wrap">
@@ -107,14 +107,14 @@ export default {
           v-for="(station, indx) in filteredStations"
           v-bind:key="indx"
         >
-          <a :href="'/' + station.shortId">
+          <router :to="'/' + station.shortId">
             <div class="py-1">
               
               <div class="text-lg text-white font-bold">
                 {{ station.goodName }}
               </div>
             </div>
-          </a>
+          </router>
         </li>
       </ul>
     </div>
