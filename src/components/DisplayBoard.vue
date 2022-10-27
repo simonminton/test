@@ -1,18 +1,18 @@
 <template>
   <div class="w-full flex flex-row flex-wrap-reverse md:flex-wrap">
     <div class="w-full md:w-1/4 bg-gray-800 text-white p-4">
-      <router to="/"> Home </router>
-      <router class="py-1" :to="'/' + $route.params.station">
+      <RouterLink to="/"> Home </RouterLink>
+      <RouterLink class="py-1" :to="'/' + $route.params.station">
         &rarr; {{ this.stationName }}
-      </router>
-      <router
+      </RouterLink>
+      <RouterLink
         v-if="$route.params.line"
         class="py-1 uppercase"
         :to="'/' + $route.params.station + '/' + $route.params.line"
       >
         &rarr; {{ $route.params.line }}
-      </router>
-      <router
+      </RouterLink>
+      <RouterLink
         v-if="$route.params.direction"
         class="py-1"
         :to="
@@ -25,7 +25,7 @@
         "
       >
         &rarr; {{ $route.params.direction }}
-      </router>
+      </RouterLink>
       <div
         v-if="lines"
         class="text-white font-semibold border-b border-gray-600 my-2 pb-2 mt-4"
@@ -38,12 +38,12 @@
         v-bind:key="lindx"
         class="text-white w-full pr-2 pb-2 mt-4 text-sm font-semibold uppercase"
       >
-        <router
+        <RouterLink
           class="px-2 py-1"
           :to="'/' + $route.params.station + '/' + line.lineName"
           :class="$route.params.line == line.lineName ? 'border-white box-border border-2 bg-' + line.lineName : 'border-' + line.lineName + ' box-border border-2 bg-' + line.lineName">
           {{ line.lineName }}
-      </router>
+      </RouterLink>
       </div>
       </div>
       <div
@@ -53,22 +53,22 @@
         Options
       </div>
       <div v-if="$route.params.line" class="text-white pb-2 mt-4 flex flex-row">
-        <router
+        <RouterLink
           class="w-1/2 block text-center"
           :to="
             '/' + $route.params.station + '/' + $route.params.line + '/inbound'
           "
         >
           Inbound
-      </router>
-        <router
+      </RouterLink>
+        <RouterLink
           class="w-1/2 block text-center"
           :to="
             '/' + $route.params.station + '/' + $route.params.line + '/outbound'
           "
         >
           Outbound
-    </router>
+    </RouterLink>
       </div>
     </div>
     <ul
@@ -87,10 +87,12 @@
 
 <script>
 import SingleTrain from "../components/SingleTrain.vue";
+import { RouterLink } from "vue-router";
 
 export default {
   components: {
     SingleTrain,
+    RouterLink
   },
   props: {
     msg: {

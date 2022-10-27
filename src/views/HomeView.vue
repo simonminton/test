@@ -1,10 +1,11 @@
 <script>
 import Clock from "../components/Clock.vue";
-
+import { RouterLink } from "vue-router";
 export default {
   name: "HomeView",
   components: {
     Clock,
+    RouterLink
   },
   data() {
     return {
@@ -91,14 +92,14 @@ export default {
           v-for="(station, indx) in stations"
           v-bind:key="indx"
         >
-          <router :to="'/' + station.shortId">
+          <RouterLink :to="'/' + station.shortId">
             <div class="py-1">
               
               <div class="text-lg text-white font-bold">
                 {{ station.goodName }}
               </div>
             </div>
-          </router>
+          </RouterLink>
         </li>
       </ul>
       <ul v-if="filteredStations.length" class="flex w-full flex-row flex-wrap">
@@ -107,14 +108,14 @@ export default {
           v-for="(station, indx) in filteredStations"
           v-bind:key="indx"
         >
-          <router :to="'/' + station.shortId">
+          <RouterLink :to="'/' + station.shortId">
             <div class="py-1">
               
               <div class="text-lg text-white font-bold">
                 {{ station.goodName }}
               </div>
             </div>
-          </router>
+          </RouterLink>
         </li>
       </ul>
     </div>
